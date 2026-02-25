@@ -20,41 +20,43 @@ document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeModal();
 });
 
-// ===== FORM SUBMIT (SMTP) =====
+// ===== FORM SUBMIT (Google Apps Script) =====
 document.getElementById("enquiryForm")
     .addEventListener("submit", function (e) {
         e.preventDefault();
+
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
 
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const phone = "+91 " + document.getElementById("phone").value;
         const time = document.getElementById("time").value;
 
-        const body = "Name: " + name + "<br>" +
-            "Email: " + email + "<br>" +
-            "Phone: " + phone + "<br>" +
-            "Preferred Time to Call: " + time;
-
-        try {
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: "noreply@mindmentorz.com",
-                Password: "shoh ntun mgvl hzzj",
-                To: "noreply@mindmentorz.com",
-                From: "noreply@mindmentorz.com",
-                Subject: "Franchise Enquiry from " + name,
-                Body: body
-            }).then(function (message) {
-                console.log("Email status: " + message);
+        fetch("https://script.google.com/macros/s/AKfycbythRugBmR3hStW93ANAbst-oR8VZK5cqFTVNvqkQvDO3qEtP7Q3e2GxK9knICv1J-c/exec", {
+            method: "POST",
+            redirect: "follow",
+            body: JSON.stringify({
+                Name: name,
+                Email: email,
+                Phone: phone,
+                Time: time
+            })
+        })
+            .then(function () {
+                console.log("Form submitted successfully");
+                closeModal();
+                document.getElementById("enquiryForm").reset();
+                window.location.href = "thankyou/";
+            })
+            .catch(function (error) {
+                console.error("Form submit error:", error);
+                alert("Something went wrong. Please try again or contact us directly at franchise@mindmentorz.com");
+            })
+            .finally(function () {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             });
-        } catch (err) {
-            console.error("Email send error:", err);
-        }
-
-        // Always navigate to thank you page
-        closeModal();
-        document.getElementById("enquiryForm").reset();
-        setTimeout(function () {
-            window.location.href = "thankyou/";
-        }, 500);
     });
