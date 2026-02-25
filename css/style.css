@@ -82,7 +82,7 @@ body {
 }
 
 .hero-overlay {
-    background: rgba(60, 20, 100, 0.80);
+    /* background: rgba(60, 20, 100, 0.80); */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -109,7 +109,7 @@ body {
     font-size: 4.5rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: #e87b02;
+    color: #fff;
     letter-spacing: 3px;
     margin-bottom: 40px;
     line-height: 1.1;
@@ -601,42 +601,72 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+    .hero {
+        min-height: 360px;
+    }
+
+    .hero-overlay {
+        padding: 40px 16px 0;
+    }
+
+    .hero-content {
+        padding-bottom: 24px;
+    }
+
     .hero-content h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        max-width: 340px;
+        line-height: 1.35;
     }
 
     .hero-content h2 {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
         letter-spacing: 1px;
+        margin-bottom: 24px;
+    }
+
+    .hero-content .btn-orange {
+        padding: 12px 40px;
+        font-size: 1rem;
     }
 
     .hero-stats {
-        grid-template-columns: 1fr;
-        transform: translateY(48px);
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px;
+        padding: 0 12px;
+        transform: translateY(36px);
+        max-width: 100%;
     }
 
     .hero-stat {
-        border-bottom-width: 5px;
+        border-bottom-width: 3px;
+        border-radius: 14px;
+        padding: 14px 6px 16px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
     }
 
     .stat-num {
-        font-size: 2.8rem;
+        font-size: 1.6rem;
     }
 
     .stat-label {
-        font-size: 2rem;
+        font-size: 0.68rem;
+        margin-top: 3px;
+        line-height: 1.25;
     }
 
     .stat-sub {
-        font-size: 1.45rem;
+        font-size: 0.58rem;
+        margin-top: 3px;
+        line-height: 1.25;
     }
 
     .intro-banner {
-        padding-top: 110px;
+        padding-top: 80px;
     }
 
     .intro-line {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
 
     .financial-grid {
@@ -1201,15 +1231,15 @@ body {
 
 @media (max-width: 768px) {
     .hero-stat .stat-num {
-        font-size: 2.6rem;
+        font-size: 1.6rem;
     }
 
     .hero-stat .stat-label {
-        font-size: 0.95rem;
+        font-size: 0.68rem;
     }
 
     .hero-stat .stat-sub {
-        font-size: 0.8rem;
+        font-size: 0.58rem;
     }
 
     .opportunity-section .opp-row {
@@ -1333,9 +1363,11 @@ body {
     display: none !important;
 }
 
-/* Move last icon left */
-.opportunity-section .opp-item:last-child {
-    margin-left: -40px !important;
+/* Move last icon left – desktop only */
+@media (min-width: 769px) {
+    .opportunity-section .opp-item:last-child {
+        margin-left: -40px !important;
+    }
 }
 
 .opportunity-section .opp-item h4 {
@@ -1565,11 +1597,43 @@ body {
 
     .opportunity-section .opp-row {
         flex-wrap: wrap !important;
-        gap: 16px !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 24px 16px !important;
+        margin-top: 30px !important;
     }
 
     .opportunity-section .opp-item {
-        flex: 0 0 45% !important;
+        flex: 0 0 44% !important;
+        max-width: 180px !important;
+        padding: 0 8px !important;
+    }
+
+    .opportunity-section .opp-item:last-child {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .opportunity-section .opp-badge-circle {
+        width: 110px !important;
+        max-width: 110px !important;
+        height: 110px !important;
+    }
+
+    .opportunity-section .opp-badge-circle img.opp-asset {
+        width: 220px !important;
+        height: 220px !important;
+    }
+
+    .opportunity-section .opp-item h4 {
+        font-size: 1rem !important;
+        margin: 0 0 4px 0 !important;
+    }
+
+    .opportunity-section .opp-item p {
+        font-size: 0.82rem !important;
+        max-width: 170px !important;
+        line-height: 1.4 !important;
     }
 
     .pedagogy-title {
@@ -1588,5 +1652,79 @@ body {
     .advantage-section .adv-asset {
         width: 240px !important;
         height: 240px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .opportunity-section {
+        padding: 50px 0 60px !important;
+    }
+
+    .opportunity-section .opp-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 28px !important;
+        margin-top: 24px !important;
+    }
+
+    .opportunity-section .opp-item {
+        flex: 0 0 auto !important;
+        max-width: 240px !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .opportunity-section .opp-badge-circle {
+        width: 100px !important;
+        max-width: 100px !important;
+        height: 100px !important;
+    }
+
+    .opportunity-section .opp-badge-circle img.opp-asset {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .opportunity-section .opp-item h4 {
+        font-size: 1.05rem !important;
+    }
+
+    .opportunity-section .opp-item p {
+        font-size: 0.85rem !important;
+        max-width: 200px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-stats {
+        gap: 5px;
+        padding: 0 5px;
+    }
+
+    .hero-stat {
+        padding: 10px 4px 12px;
+        border-radius: 10px;
+    }
+
+    .stat-num {
+        font-size: 1.3rem;
+    }
+
+    .stat-label {
+        font-size: 0.6rem;
+    }
+
+    .stat-sub {
+        font-size: 0.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
     }
 }
